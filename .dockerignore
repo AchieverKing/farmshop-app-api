@@ -1,0 +1,46 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments (local)
+venv/
+.env/
+.venv/
+env/
+pyenv/
+
+# Environment & secrets
+*.env
+*.env.*
+.envrc
+
+# Django
+*.sqlite3
+media/
+staticfiles/
+static/
+
+# Logs
+*.log
+logs/
+*.pid
+
+# Coverage / Testing
+.coverage
+htmlcov/
+.tox/
+pytest_cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Git (but NOT the Dockerfile)
+.git/
+.gitignore

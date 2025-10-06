@@ -1,0 +1,9 @@
+{
+  // other settings...
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+
+  "[dockerfile]": {
+    "editor.formatOnSave": false
+  }
+}
