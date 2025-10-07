@@ -11,4 +11,3 @@ exclude =
     dist,
     manage.py,
     settings.py
-max-line-length = 88
