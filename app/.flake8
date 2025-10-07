@@ -9,4 +9,6 @@ exclude =
     .venv,
     build,
     dist,
-    migrations
+    manage.py,
+    settings.py
+max-line-length = 88
