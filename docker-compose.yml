@@ -9,5 +9,25 @@ services:
     volumes:
       - ./app:/app
     working_dir: /app
+    environment:
+      - DB_HOST=db
+      - DB_NAME=farmshop
+      - DB_USER=farmuser
+      - DB_PASS=farm12345
+    depends_on:
+      - db
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=farmshop
+      - POSTGRES_USER=farmuser
+      - POSTGRES_PASSWORD=farm12345
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data/
+
+volumes:
+  dev-db-data:
