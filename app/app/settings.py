@@ -72,12 +72,23 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "NAME": os.environ.get("DB_NAME", "farmshop"),
+        "USER": os.environ.get("DB_USER", "farmuser"),
+        "PASSWORD": os.environ.get("DB_PASS", "farm12345"),
+        "PORT": "5432",
     }
 }
+
 
 
 # Password validation
