@@ -81,11 +81,11 @@ environ.Env.read_env()
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.environ.get("DB_HOST", "localhost"),
-        "NAME": os.environ.get("DB_NAME", "farmshop"),
-        "USER": os.environ.get("DB_USER", "farmuser"),
-        "PASSWORD": os.environ.get("DB_PASS", "farm12345"),
-        "PORT": "5432",
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASS"),
+        "HOST": os.environ.get("DB_HOST"),
+        "PORT": 5432,
     }
 }
 
