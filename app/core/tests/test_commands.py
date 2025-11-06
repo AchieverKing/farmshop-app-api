@@ -24,7 +24,11 @@ class CommandTests(SimpleTestCase):
         """Test waiting for database when getting OperationalError"""
         mock_conn = MagicMock()
         # Raise errors 5 times, succeed on 6th
-        patched_getitem.side_effect = [PsycopgError] * 2 + [OperationalError] * 3 + [mock_conn]
+        patched_getitem.side_effect = (
+            [PsycopgError] * 2 +
+            [OperationalError] * 3 +
+            [mock_conn]
+        )
 
         call_command("wait_for_db")
 
