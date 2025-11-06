@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test-lint:
-    name: Test and Lint
+    name: Test, Wait for DB, and Lint
     runs-on: ubuntu-latest
 
     steps:
@@ -17,8 +17,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Build and Start Containers
+        run: docker compose up -d --build db
+
+      - name: Wait for Database
+        run: docker compose run --rm app sh -c "python manage.py wait_for_db"
+
       - name: Run Tests
         run: docker compose run --rm app sh -c "python manage.py test"
 
       - name: Run Lint
         run: docker compose run --rm app sh -c "flake8"
+
+      - name: Stop Containers
+        if: always()
+        run: docker compose down
